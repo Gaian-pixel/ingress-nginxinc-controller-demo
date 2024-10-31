@@ -1,0 +1,15 @@
+apiVersion: k8s.nginx.org/v1
+kind: TransportServer
+metadata:
+  name: echo-tcp
+  namespace: default
+spec:
+  listener:
+    name: echo-tcp
+    protocol: TCP
+  upstreams:
+  - name: echo-app
+    service: tcp-echo
+    port: 9000
+  action:
+    pass: echo-app
